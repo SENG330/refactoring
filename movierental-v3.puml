@@ -1,0 +1,47 @@
+@startuml
+
+class Rental {
+ daysRented: int
+ getCharge(): double
+ getFrequentRenterPoints():double
+}
+
+class Movie {
+title: String
+getCharge(days:int)
+getFrequentRenterPoints(days:int)
+}
+
+class Customer {
+ + statement(): String
+ htmlStatement(): String
+ getTotalCharge(): double
+ getTotalFrequentRenterPoints(): double
+}
+
+abstract class Price {
+{abstract} getCharge(days: int): double
+getFrequentRenterPoints(days:int): double
+}
+
+class NewReleasePrice {
+getCharge(days: int): double
+getFrequentRenterPoints(days:int): double
+}
+
+class RegularPrice {
+getCharge(days: int): double
+}
+
+class ChildrensPrice {
+getCharge(days: int): double
+}
+
+Customer "1" -up-> "*" Rental
+Rental "1" -left-> "*" Movie
+
+RegularPrice -up-|> Price
+ChildrensPrice -up-|> Price
+NewReleasePrice -up-|> Price
+Movie --> "1" Price
+@enduml

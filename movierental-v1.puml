@@ -1,0 +1,21 @@
+@startuml
+
+class Rental {
+ daysRented: int
+}
+
+class Movie {
+title: String
+priceCode: int
+
+}
+
+class Customer {
+ + statement(): String
+ - amountFor(): double
+}
+
+Customer "1" -left-> "*" Rental
+Rental "1" -left-> "*" Movie
+
+@enduml
